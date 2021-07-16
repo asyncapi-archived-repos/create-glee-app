@@ -3,5 +3,5 @@ export default async function (event) {
     reply: [{
       payload: `Hello from Glee! You said: "${event.payload}".`
     }]
-  }
+  };
 }

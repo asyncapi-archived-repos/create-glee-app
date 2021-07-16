@@ -1,5 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import spawn from 'cross-spawn'
+import spawn from 'cross-spawn';
 
 interface InstallArgs {
   /**
@@ -21,21 +20,20 @@ export function install(
   /**
    * NPM-specific command-line flags.
    */
-  const npmFlags: string[] = []
+  const npmFlags: string[] = [];
   /**
    * Return a Promise that resolves once the installation is finished.
    */
   return new Promise((resolve, reject) => {
-    let args: string[]
-    let command: string = 'npm'
+    const command = 'npm';
 
     /**
      * Call `npm install [--save|--save-dev] ...`.
      */
-    args = ['install', '--save-exact']
-    args.push(devDependencies ? '--save-dev' : '--save')
-    if (dependencies) args.push(...dependencies)
-    args.push(...npmFlags)
+    const args: string[] = ['install', '--save-exact'];
+    args.push(devDependencies ? '--save-dev' : '--save');
+    if (dependencies) {args.push(...dependencies);}
+    args.push(...npmFlags);
     
     /**
      * Spawn the installation process.
@@ -43,13 +41,13 @@ export function install(
     const child = spawn(command, args, {
       stdio: 'inherit',
       env: { ...process.env, ADBLOCK: '1', DISABLE_OPENCOLLECTIVE: '1' },
-    })
+    });
     child.on('close', (code) => {
       if (code !== 0) {
-        reject({ command: `${command} ${args.join(' ')}` })
-        return
+        reject({ command: `${command} ${args.join(' ')}` });
+        return;
       }
-      resolve()
-    })
-  })
+      resolve();
+    });
+  });
 }
