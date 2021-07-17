@@ -22,7 +22,7 @@
     "test": "echo \"No test specified\"",
     "lint": "eslint --max-warnings 13 --config .eslintrc .",
     "prepare": "rimraf ./dist/ && ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
-    "release": "npm run release:prepare && semantic-release",
+    "release": "semantic-release",
     "get:version": "echo $npm_package_version",
     "get:name": "echo $npm_package_name",
     "generate:assets": "echo \"No assets to generate so far\"",
