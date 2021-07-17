@@ -21,10 +21,11 @@
     "dev": "ncc build ./index.ts -w -o dist/",
     "test": "echo \"No test specified\"",
     "lint": "eslint --max-warnings 13 --config .eslintrc .",
-    "release": "semantic-release",
+    "prepare": "rimraf ./dist/ && ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+    "release": "npm run release:prepare && semantic-release",
     "get:version": "echo $npm_package_version",
     "get:name": "echo $npm_package_name",
-    "generate:assets": "rimraf ./dist/ && ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+    "generate:assets": "echo \"No assets to generate so far\"",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },
   "devDependencies": {
